@@ -1,9 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ["DM Sans", "sans-serif"], // Define DM Sans como fonte padrão para sans
+      },
+      colors: {
+        primary: "#0ACF83",
+      },
+    },
   },
   plugins: [],
-}
-
+};
