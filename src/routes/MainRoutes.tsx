@@ -1,16 +1,15 @@
 import { useRoutes } from "react-router-dom";
-import Login from "../pages/Login";
 import Homepage from "../pages/Homepage";
+import Signin from "../pages/Signin";
+import Signup from "../pages/Signup";
+import ProtectedRoute from "../components/protectedRoute";
 // import { NotFound } from '../pages/NotFound';
-// import { Login } from '../pages/Login';
-// import { Register } from '../pages/Register';
 
 export const MainRoutes = () => {
   return useRoutes([
-    { path: "/", element: <Login /> },
-    { path: "/home", element: <Homepage /> },
-    // { path: "/register", element: <Register /> },
-    // { path: "/category/:type", element: <CategoryPage /> },
+    { path: "/", element: <ProtectedRoute children={<Homepage />} /> },
+    { path: "/signin", element: <Signin /> },
+    { path: "/signup", element: <Signup /> },
     // { path: "*", element: <NotFound /> },
   ]);
 };
