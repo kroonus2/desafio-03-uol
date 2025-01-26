@@ -8,6 +8,7 @@ export default {
       },
       colors: {
         primary: "#0ACF83",
+        light_gray: "F6F6F6",
       },
     },
   },

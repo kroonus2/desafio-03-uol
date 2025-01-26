@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../services/basicAuth";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { signInWithGoogle } from "../services/googleAuth";
 
 const Signup = () => {
+  const navigate = useNavigate();
   // Usando useState pra pegar os campos
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -19,7 +20,7 @@ const Signup = () => {
     try {
       const user = await registerUser(email, password);
       console.log("Usuario registrado com sucesso!", user);
-      clearInputs();
+      navigate("/");
     } catch (error: any) {
       console.error("Erro ao registrar: ", error);
       clearInputs();
@@ -30,6 +31,7 @@ const Signup = () => {
     try {
       const user = await signInWithGoogle();
       console.log("Usuário logado:", user);
+      navigate("/");
     } catch (error) {
       console.error("Erro ao logar com Google:", error);
     }

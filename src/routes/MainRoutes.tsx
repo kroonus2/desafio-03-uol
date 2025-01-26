@@ -3,6 +3,7 @@ import Homepage from "../pages/Homepage";
 import Signin from "../pages/Signin";
 import Signup from "../pages/Signup";
 import ProtectedRoute from "../components/protectedRoute";
+import Search from "../pages/Search";
 // import { NotFound } from '../pages/NotFound';
 
 export const MainRoutes = () => {
@@ -10,6 +11,7 @@ export const MainRoutes = () => {
     { path: "/", element: <ProtectedRoute children={<Homepage />} /> },
     { path: "/signin", element: <Signin /> },
     { path: "/signup", element: <Signup /> },
+    { path: "/search", element: <Search /> },
     // { path: "*", element: <NotFound /> },
   ]);
 };
