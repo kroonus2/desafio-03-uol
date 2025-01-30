@@ -4,6 +4,7 @@ import Signin from "../pages/Signin";
 import Signup from "../pages/Signup";
 import ProtectedRoute from "../components/protectedRoute";
 import Search from "../pages/Search";
+import AllProducts from "../pages/Allproducts";
 // import { NotFound } from '../pages/NotFound';
 
 export const MainRoutes = () => {
@@ -12,6 +13,8 @@ export const MainRoutes = () => {
     { path: "/signin", element: <Signin /> },
     { path: "/signup", element: <Signup /> },
     { path: "/search", element: <Search /> },
+    { path: "/all-products", element: <AllProducts /> },
+
     // { path: "*", element: <NotFound /> },
   ]);
 };

@@ -7,9 +7,10 @@ import { FaArrowRight } from "react-icons/fa";
 import { Product } from "../interfaces/product";
 import { ProductService } from "../services/products";
 import LoadingSpinner from "../components/loadingSpinner";
+import ProducItem from "../components/productItem";
 
 const Homepage = () => {
-  const navigate = useNavigate(); // Hook para redirecionar o usuário
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para controlar o menu do perfil
   // Requisiçoes
   const [products, setProducts] = useState<Product[]>([]);
@@ -49,7 +50,7 @@ const Homepage = () => {
   return (
     <>
       <header className="flex flex-col gap-5 mx-auto">
-        <nav className="flex justify-around gap-5 mt-5 items-center">
+        <nav className="flex justify-between w-11/12 m-auto mt-5 items-center">
           {/* Botão para o menu principal */}
           <BiMenuAltLeft
             size={28}
@@ -94,20 +95,20 @@ const Homepage = () => {
           </div>
         </nav>
         {/* Texto */}
-        <div className="w-5/6 mx-auto">
-          <p className="text-start text-gray-500 text-lg">Hi, Andrea</p>
-          <p className="text-start font-bold text-2xl">
+        <div className="w-11/12 mx-auto">
+          <p className="text-start text-gray-500 text-xl">Hi, Andrea</p>
+          <p className="text-start font-bold text-3xl ">
             What are you looking for today?
           </p>
         </div>
-        <SearchInput disabled redirectPath="/search" />
+        <SearchInput redirectOnFocus={true} redirectPath="/search" />
       </header>
       {/* Cards Centrais ou Destaques */}
-      <div className="bg-gray-100 min-h-screen rounded-t-3xl ">
+      <div className="bg-gray-100 rounded-t-3xl ">
         <div className="w-[95%] m-auto">
           {/* Opcoes */}
           <nav className="m-5">
-            <dl className="flex gap-5 pt-8">
+            <dl className="flex gap-5 pt-5">
               <dt
                 className={`px-4 py-1 rounded-2xl cursor-pointer ${
                   activeOption === "Headphones"
@@ -132,7 +133,7 @@ const Homepage = () => {
           </nav>
           {/* Destaques */}
           {/* Colocar carousel na versao desktop tbm, por enquanto somente grid */}
-          <div className="flex overflow-x-scroll px-2 [&::-webkit-scrollbar]:hidden">
+          <div className="flex overflow-x-scroll px-2 [&::-webkit-scrollbar]:hidden min-h-52">
             {/* Div principal do carrossel */}
             {products
               .filter(
@@ -163,26 +164,20 @@ const Homepage = () => {
               ))}
           </div>
           {/* Produtos - Ver todos*/}
-          <div className="flex justify-between p-3 mt-3">
+          <div
+            className="flex justify-between p-3 mt-5"
+            onClick={() => {
+              navigate("/all-products");
+            }}
+          >
             <h3 className="text-lg">Featured Products</h3>
             <p className="text-gray-400">See All</p>
           </div>
           {/* Cards dos produtos abaixo */}
           {/* Colocar carousel na versao desktop tbm, por enquanto somente grid */}
-          <div className="flex overflow-x-scroll [&::-webkit-scrollbar]:hidden md:grid md:grid-cols-5">
+          <div className="flex overflow-x-scroll [&::-webkit-scrollbar]:hidden md:grid md:grid-cols-5 mt-3">
             {products.map((produto, index) => (
-              <div className="flex justify-center gap-5 m-2 my-3" key={index}>
-                <div className="flex flex-col bg-white w-44 p-7 rounded-2xl">
-                  <img src="src/assets/headphone.svg" alt="Headphone Image" />
-                  <h3>{produto.name}</h3>
-                  <p className="text-xs font-bold">
-                    {new Intl.NumberFormat("en-US", {
-                      style: "currency",
-                      currency: "USD",
-                    }).format(produto.price)}
-                  </p>
-                </div>
-              </div>
+              <ProducItem produto={produto} key={index} rating={true} />
             ))}
           </div>
         </div>

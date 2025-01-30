@@ -49,7 +49,7 @@ const Signin = () => {
       {/* Formulário */}
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col justify-center items-center w-5/6"
+        className="flex flex-col justify-center items-center w-11/12"
       >
         <input
           type="email"
