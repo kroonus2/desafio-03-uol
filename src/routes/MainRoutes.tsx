@@ -4,7 +4,9 @@ import Signin from "../pages/Signin";
 import Signup from "../pages/Signup";
 import ProtectedRoute from "../components/protectedRoute";
 import Search from "../pages/Search";
-import AllProducts from "../pages/Allproducts";
+import AllProducts from "../pages/Products";
+import ProductPage from "../pages/Product";
+import Cart from "../pages/Cart";
 // import { NotFound } from '../pages/NotFound';
 
 export const MainRoutes = () => {
@@ -14,7 +16,8 @@ export const MainRoutes = () => {
     { path: "/signup", element: <Signup /> },
     { path: "/search", element: <Search /> },
     { path: "/all-products", element: <AllProducts /> },
-
+    { path: "/product/:id", element: <ProductPage /> },
+    { path: "/my-cart", element: <Cart /> },
     // { path: "*", element: <NotFound /> },
   ]);
 };

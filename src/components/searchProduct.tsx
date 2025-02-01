@@ -1,6 +1,7 @@
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaStar } from "react-icons/fa";
 import { Product } from "../interfaces/product";
+import { useNavigate } from "react-router-dom";
 
 // Define a interface para as props
 interface SearchProductProps {
@@ -9,8 +10,13 @@ interface SearchProductProps {
 
 // **** Rever a largura dos itens, e retirar a quebra do nome do produto
 const SearchProduct = ({ product }: SearchProductProps) => {
+  const navigate = useNavigate();
+
   return (
-    <div className="flex justify-between items-center w-full m-auto my-3">
+    <div
+      className="flex justify-between items-center w-full m-auto my-3"
+      onClick={() => navigate(`/product/${product.id}`)}
+    >
       {/* Imagem do produto */}
       <img
         src={"src/assets/searchProductImg.svg"}

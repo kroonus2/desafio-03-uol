@@ -1,39 +1,21 @@
 import { logoutUser } from "../services/basicAuth"; // Importa a função de logout
 import { useNavigate } from "react-router-dom"; // Para redirecionamento após logout
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BiMenuAltLeft } from "react-icons/bi";
 import SearchInput from "../components/search";
 import { FaArrowRight } from "react-icons/fa";
-import { Product } from "../interfaces/product";
-import { ProductService } from "../services/products";
 import LoadingSpinner from "../components/loadingSpinner";
 import ProducItem from "../components/productItem";
+import useProducts from "../hook/useProducts";
 
 const Homepage = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para controlar o menu do perfil
-  // Requisiçoes
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
   //Opcoes carousel 1
   const [activeOption, setActiveOption] = useState<string>("Headphones"); // Inicia com a categoria headphone
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        setLoading(true);
-        const response = await ProductService.getProducts();
-        setProducts(response);
-      } catch (err) {
-        setError("Falha ao carregar os produitos");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
-  }, []);
+  // Refatorando a requisição
+  const { products, loading, error } = useProducts();
 
   if (loading) return <LoadingSpinner texto="Carregando os produtos" />;
 
@@ -143,6 +125,7 @@ const Homepage = () => {
                 <div
                   className="flex-shrink-0 w-[94%] mr-5 flex justify-around p-5 bg-white rounded-xl md:w-1/2"
                   key={index}
+                  onClick={() => navigate(`/product/${produto.id}`)}
                 >
                   <div className="flex flex-col justify-around w-[40%] gap-5">
                     <h3 className="text-3xl text-pretty font-bold">
@@ -177,7 +160,7 @@ const Homepage = () => {
           {/* Colocar carousel na versao desktop tbm, por enquanto somente grid */}
           <div className="flex overflow-x-scroll [&::-webkit-scrollbar]:hidden md:grid md:grid-cols-5 mt-3">
             {products.map((produto, index) => (
-              <ProducItem produto={produto} key={index} rating={true} />
+              <ProducItem produto={produto} key={index} rating={false} />
             ))}
           </div>
         </div>
