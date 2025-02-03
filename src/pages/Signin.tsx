@@ -4,7 +4,7 @@ import { useState } from "react";
 import { signInWithGoogle } from "../services/googleAuth";
 import { FcGoogle } from "react-icons/fc";
 
-import SigninImg from "../assets/image_bgSignin.svg";
+import SigninImg from "/src/assets/image_bgSignin.svg";
 
 const Signin = () => {
   const navigate = useNavigate();
