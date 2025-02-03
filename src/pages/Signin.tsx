@@ -4,6 +4,8 @@ import { useState } from "react";
 import { signInWithGoogle } from "../services/googleAuth";
 import { FcGoogle } from "react-icons/fc";
 
+import SigninImg from "../assets/image_bgSignin.svg";
+
 const Signin = () => {
   const navigate = useNavigate();
   // Usando useState pra pegar os campos
@@ -36,9 +38,11 @@ const Signin = () => {
       console.error("Erro ao logar com Google:", error);
     }
   };
-
   return (
-    <div className="flex flex-col justify-between items-center h-screen w-full relative bg-cover bg-center bg-[url(src/assets/image_bgSignin.svg)]">
+    <div
+      className="flex flex-col justify-between items-center h-screen w-full relative bg-cover bg-center"
+      style={{ backgroundImage: `url(${SigninImg})` }}
+    >
       {/* Cabeçalho */}
       <div className="text-center gap-3 mt-32">
         <h3 className="font-bold text-[52px] text-white">Audio</h3>

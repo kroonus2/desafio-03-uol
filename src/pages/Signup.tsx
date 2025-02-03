@@ -4,6 +4,8 @@ import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { signInWithGoogle } from "../services/googleAuth";
 
+import SignupImg from "../assets/image_bgSignin.svg";
+
 const Signup = () => {
   const navigate = useNavigate();
   // Usando useState pra pegar os campos
@@ -45,7 +47,10 @@ const Signup = () => {
   // };
 
   return (
-    <div className="flex flex-col justify-between items-center h-screen w-full relative bg-cover bg-center bg-[url(assets/image_bgSignin.svg)]">
+    <div
+      className="flex flex-col justify-between items-center h-screen w-full relative bg-cover bg-center"
+      style={{ backgroundImage: `url(${SignupImg})` }}
+    >
       {/* Cabeçalho */}
       <div className="text-center gap-3 mt-32">
         <h3 className="font-bold text-[52px] text-white">Audio</h3>
