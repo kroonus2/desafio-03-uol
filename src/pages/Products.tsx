@@ -1,5 +1,4 @@
 import { IoIosArrowBack, IoMdClose } from "react-icons/io";
-import { LuShoppingCart } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 import MyBottomSheet from "../components/filterBottomSheet";
 import { useEffect, useState } from "react";
@@ -23,7 +22,7 @@ const AllProducts = () => {
   const [sortBy, setSortBy] = useState<string>("Popularity");
 
   // Refatorando a requisição
-  const { products, loading, error } = useProducts();
+  const { products, loading } = useProducts();
 
   useEffect(() => {
     console.log("Filtros:", { activeCategory, sortBy });

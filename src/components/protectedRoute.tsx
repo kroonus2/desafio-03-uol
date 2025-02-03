@@ -1,6 +1,5 @@
 import { Navigate } from "react-router-dom";
 import { useAuthState } from "../services/authStateListener";
-import { FaSpinner } from "react-icons/fa";
 import LoadingSpinner from "./loadingSpinner";
 
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {

@@ -1,5 +1,4 @@
 import { IoIosArrowBack } from "react-icons/io";
-import { LuShoppingCart } from "react-icons/lu";
 import { useNavigate, useParams } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css"; // Importação do CSS oficial

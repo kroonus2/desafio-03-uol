@@ -31,7 +31,7 @@ const Homepage = () => {
   }, []);
 
   // Refatorando a requisição
-  const { products, loading, error } = useProducts();
+  const { products, loading } = useProducts();
 
   if (loading) return <LoadingSpinner texto="Carregando os produtos" />;
 

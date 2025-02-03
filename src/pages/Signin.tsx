@@ -1,4 +1,4 @@
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../services/basicAuth";
 import { useState } from "react";
 import { signInWithGoogle } from "../services/googleAuth";
