@@ -78,7 +78,7 @@ const Homepage = () => {
               />
             ) : (
               <img
-                src={headphone}
+                src="/AvatarSmall.svg"
                 alt="Perfil"
                 className="cursor-pointer"
                 onClick={() => setIsMenuOpen((prev) => !prev)}
@@ -163,7 +163,7 @@ const Homepage = () => {
                   </div>
                   <div>
                     <img
-                      src="src/assets/headphone.svg"
+                      src={headphone}
                       alt="Headphone Image"
                       width={117}
                       height={135}
