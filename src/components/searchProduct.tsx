@@ -2,6 +2,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaStar } from "react-icons/fa";
 import { Product } from "../interfaces/product";
 import { useNavigate } from "react-router-dom";
+import searchImg from "../assets/searchProductImg.svg";
 
 // Define a interface para as props
 interface SearchProductProps {
@@ -19,7 +20,7 @@ const SearchProduct = ({ product }: SearchProductProps) => {
     >
       {/* Imagem do produto */}
       <img
-        src={"src/assets/searchProductImg.svg"}
+        src={searchImg}
         alt="Imagem do produto"
         className="rounded-lg w-24 h-24 object-cover"
       />
