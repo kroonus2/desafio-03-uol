@@ -7,6 +7,7 @@ import { FaArrowRight } from "react-icons/fa";
 import LoadingSpinner from "../components/loadingSpinner";
 import ProducItem from "../components/productItem";
 import useProducts from "../hook/useProducts";
+import headphone from "../assets/headphone.svg";
 
 const Homepage = () => {
   const navigate = useNavigate();
@@ -59,7 +60,7 @@ const Homepage = () => {
           />
           {/* Logo */}
           <img
-            src="src/assets/Logo.svg"
+            src="../public/Logo.svg"
             alt="Logo/Home"
             height={25}
             width={105}
@@ -77,7 +78,7 @@ const Homepage = () => {
               />
             ) : (
               <img
-                src="src/assets/AvatarSmall.svg"
+                src={headphone}
                 alt="Perfil"
                 className="cursor-pointer"
                 onClick={() => setIsMenuOpen((prev) => !prev)}
