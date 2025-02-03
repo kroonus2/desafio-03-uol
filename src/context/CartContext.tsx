@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 import { Product } from "../interfaces/product";
 
-// Extender a interface Product para incluir a quantidade
+// Usando a interface Product para incluir a quantidade
 export interface CartProduct extends Product {
   quantity: number;
 }
@@ -35,7 +35,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  // Remover item do carrinho
+  // Remover do carrinho
   const removeFromCart = (productId: string) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
   };
@@ -67,7 +67,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 export const useCart = (): CartContextType => {
   const context = useContext(CartContext);
   if (!context) {
-    throw new Error("useCart deve ser usado dentro de um CartProvider");
+    throw new Error("useCart deve estar dentro do CartProvider");
   }
   return context;
 };

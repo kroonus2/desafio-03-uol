@@ -45,8 +45,8 @@ const Search = () => {
       <div className="mt-7">
         <SearchInput onSearch={handleSearch} />
       </div>
-
-      <div className="w-11/12 m-auto mt-7 flex-grow">
+      {/* Altura fixa com overflow-scroll */}
+      <div className="w-11/12 m-auto mt-7 h-[40vh] overflow-y-auto">
         {loading ? (
           <LoadingSpinner texto="Buscando Produtos" />
         ) : error ? (

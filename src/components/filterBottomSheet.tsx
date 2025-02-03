@@ -13,7 +13,7 @@ interface BottomSheetProps {
 
 const MyBottomSheet = ({ open, onClose, children }: BottomSheetProps) => {
   return (
-    <Sheet isOpen={open} onClose={onClose} snapPoints={[500, 300, 100, 0]}>
+    <Sheet isOpen={open} onClose={onClose} snapPoints={[470, 300, 100, 0]}>
       <Sheet.Container>
         <Sheet.Header />
         <Sheet.Content className="p-4">{children}</Sheet.Content>

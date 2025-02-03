@@ -7,7 +7,9 @@ import { CartProvider } from "./context/CartContext.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
+    {/* Carrinho  */}
     <CartProvider>
+      {/* Rotas */}
       <BrowserRouter>
         <App />
       </BrowserRouter>

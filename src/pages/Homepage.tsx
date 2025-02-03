@@ -1,6 +1,6 @@
 import { logoutUser } from "../services/basicAuth"; // Importa a função de logout
 import { useNavigate } from "react-router-dom"; // Para redirecionamento após logout
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiMenuAltLeft } from "react-icons/bi";
 import SearchInput from "../components/search";
 import { FaArrowRight } from "react-icons/fa";
@@ -11,8 +11,24 @@ import useProducts from "../hook/useProducts";
 const Homepage = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para controlar o menu do perfil
-  //Opcoes carousel 1
   const [activeOption, setActiveOption] = useState<string>("Headphones"); // Inicia com a categoria headphone
+
+  // Estado para armazenar os dados do usuário
+  const [user, setUser] = useState<{
+    name: string | null;
+    photo: string | null;
+  }>({
+    name: null,
+    photo: null,
+  });
+
+  // Recupera os dados do usuário ao carregar a página
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
 
   // Refatorando a requisição
   const { products, loading, error } = useProducts();
@@ -23,6 +39,8 @@ const Homepage = () => {
     try {
       await logoutUser(); // Executa o logout
       console.log("Usuário deslogado com sucesso!");
+      localStorage.removeItem("user"); // Remove os dados do google ao deslogar
+      setUser({ name: null, photo: null });
       navigate("/signin"); // Redireciona para a página de login
     } catch (error) {
       console.error("Erro ao deslogar:", error);
@@ -48,26 +66,30 @@ const Homepage = () => {
             className="cursor-pointer"
             onClick={() => navigate("/")}
           />
-          {/* Avatar com menu de perfil */}
+          {/* Avatar do usuário autenticado */}
           <div className="relative">
-            <img
-              src="src/assets/AvatarSmall.svg"
-              alt="Perfil"
-              className="cursor-pointer"
-              onClick={() => setIsMenuOpen((prev) => !prev)}
-            />
+            {user.photo ? (
+              <img
+                src={user.photo}
+                alt="Perfil"
+                className="w-10 h-10 rounded-full cursor-pointer"
+                onClick={() => setIsMenuOpen((prev) => !prev)}
+              />
+            ) : (
+              <img
+                src="src/assets/AvatarSmall.svg"
+                alt="Perfil"
+                className="cursor-pointer"
+                onClick={() => setIsMenuOpen((prev) => !prev)}
+              />
+            )}
+
             {isMenuOpen && (
               <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-md shadow-lg">
                 <ul>
                   <li
                     className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
-                    onClick={() => navigate("/")} // Redireciona para o home por enquanto
-                  >
-                    Perfil
-                  </li>
-                  <li
-                    className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
-                    onClick={handleLogout} // logout
+                    onClick={handleLogout}
                   >
                     Logout
                   </li>
@@ -78,7 +100,10 @@ const Homepage = () => {
         </nav>
         {/* Texto */}
         <div className="w-11/12 mx-auto">
-          <p className="text-start text-gray-500 text-xl">Hi, Andrea</p>
+          {/*Nome aqui, caso seja do google, se nao fica sem nada */}
+          <p className="text-start text-gray-500 text-xl">
+            Hi, {user.name ? user.name : ""}
+          </p>
           <p className="text-start font-bold text-3xl ">
             What are you looking for today?
           </p>

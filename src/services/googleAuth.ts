@@ -6,13 +6,19 @@ export const signInWithGoogle = async () => {
   const provider = new GoogleAuthProvider(); // Provedor de autenticação do Google
   try {
     const result = await signInWithPopup(auth, provider); // Abre o popup do Google
-    // const credential = GoogleAuthProvider.credentialFromResult(result); // Obtém credenciais
-    // const token = credential?.accessToken; // Token de acesso do Google
-    const user = result.user; // Informações do usuário autenticado
-    console.log("Usuário autenticado com sucesso:", user);
+    const user = result.user;
+    // Armazena os dados no localStorage
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        name: user.displayName,
+        photo: user.photoURL,
+      })
+    );
+    // console.log("Usuário autenticado com sucesso:", user);
     return user;
   } catch (error: any) {
-    console.error("Erro ao autenticar com Google:", error);
+    // console.error("Erro ao autenticar com Google:", error);
     throw error;
   }
 };
