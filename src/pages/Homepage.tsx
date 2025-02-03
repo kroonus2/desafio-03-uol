@@ -60,7 +60,7 @@ const Homepage = () => {
           />
           {/* Logo */}
           <img
-            src="../public/Logo.svg"
+            src="/Logo.svg"
             alt="Logo/Home"
             height={25}
             width={105}

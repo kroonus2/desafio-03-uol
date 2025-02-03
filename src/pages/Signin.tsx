@@ -38,7 +38,7 @@ const Signin = () => {
   };
 
   return (
-    <div className="flex flex-col justify-between items-center h-screen w-full relative bg-cover bg-center bg-[url(public/image_bgSignIn.svg)]">
+    <div className="flex flex-col justify-between items-center h-screen w-full relative bg-cover bg-center bg-[url(/image_bgSignIn.svg)]">
       {/* Cabeçalho */}
       <div className="text-center gap-3 mt-32">
         <h3 className="font-bold text-[52px] text-white">Audio</h3>
