@@ -14,6 +14,9 @@ const Cart = () => {
     0
   );
 
+  // Total de itens
+  const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+
   return (
     <div className="flex flex-col min-h-screen">
       <header className="w-11/12 mx-auto">
@@ -94,7 +97,7 @@ const Cart = () => {
           {/* fixo com total e btn */}
           <div className="w-full fixed bottom-0 bg-white shadow-md py-5">
             <div className="w-11/12 mx-auto flex justify-between items-center">
-              <h3 className="">Total 2 itens</h3>
+              <h3 className="">Total {totalItems} itens</h3>
               <span className="text-lg font-bold">
                 {new Intl.NumberFormat("en-US", {
                   style: "currency",
